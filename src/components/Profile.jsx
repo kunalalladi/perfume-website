@@ -663,7 +663,7 @@ const ProfilePage = () => {
         </div>
         
         {/* Footer with glass effect */}
-        <footer className={`mt-12 ${darkMode ? 'bg-gray-800/70' : 'bg-white/80'} backdrop-blur-md py-8 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'} transition-colors duration-300`}>
+        {/* <footer className={`mt-12 ${darkMode ? 'bg-gray-800/70' : 'bg-white/80'} backdrop-blur-md py-8 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'} transition-colors duration-300`}>
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
@@ -719,7 +719,7 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
-        </footer>
+        </footer> */}
       </div>
     </div>
   );

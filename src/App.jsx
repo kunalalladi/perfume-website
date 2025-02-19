@@ -14,6 +14,7 @@ import Partners from './components/Partners/Partners';
 import Footer from './components/Footer/Footer';
 import Popup from './components/Popup/Popup';
 import PerfumeCategory from './components/ProductCategory';
+import ProductDetails from './components/ProductDetails';
 import ProfilePage from './components/Profile';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -79,6 +80,7 @@ const App = () => {
           } />
           <Route path="/shop" element={<PerfumeCategory />} />
           <Route path="/profile" element={<ProfilePage/>} />
+          <Route path="/Product" element={<ProductDetails />} />
         </Routes>
       </div>
     </Router>

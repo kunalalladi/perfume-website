@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Star, ShoppingCart, Filter, ChevronDown, ChevronUp, Heart, RefreshCw, Search, X, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom'; 
 import at2Image from '../assets/images/Perfume_img/at2.png';
 import at3Image from '../assets/images/Perfume_img/at3.png';
 import at4Image from '../assets/images/Perfume_img/at4.png';
@@ -1039,11 +1040,13 @@ const PerfumeCategory = () => {
                   }
                 `}>
                   {filteredProducts.map((product, index) => (
+                    <Link to="/product" >
                     <ProductCard 
                       key={product.id} 
                       product={product} 
                       index={index}
                     />
+                    </Link>
                   ))}
                 </div>
               )}
