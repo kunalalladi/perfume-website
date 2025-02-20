@@ -51,6 +51,8 @@ const Navbar = ({ handleOrderPopup }) => {
         return savedTheme === 'dark';
     });
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     useEffect(() => {
         if (darkMode) {
             document.documentElement.classList.add('dark');
@@ -128,14 +130,20 @@ const Navbar = ({ handleOrderPopup }) => {
                             <DarkMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
                         </div>
 
-                        {/* Profile Icon Section */}
-                        <Link to="/profile" className="relative">
-                            <img 
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&s"  // Change to dynamic user profile image
-                                alt="User Profile"
-                                className="w-10 h-10 rounded-full border-2 border-gray-300 cursor-pointer hover:border-brandBlue transition-all duration-300"
-                            />
-                        </Link>
+                        {/* Profile / Login Section */}
+                        {isLoggedIn ? (
+                            <Link to="/profile" className="relative">
+                                <img 
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&s" 
+                                    alt="User Profile"
+                                    className="w-10 h-10 rounded-full border-2 border-gray-300 cursor-pointer hover:border-brandBlue transition-all duration-300"
+                                />
+                            </Link>
+                        ) : (
+                            <Link to="/Auth" className="px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-80 transition-all duration-300">
+                                Login
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

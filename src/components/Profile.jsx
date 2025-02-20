@@ -17,6 +17,8 @@ import {
   Sun
 } from 'lucide-react';
 
+const images = import.meta.glob('../assets/images/Perfume_img/*.png', { eager: true });
+
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [darkMode, setDarkMode] = useState(false);
@@ -494,8 +496,8 @@ const ProfilePage = () => {
                   {[1, 2, 3, 4, 5].map((item) => (
                     <div key={item} className={`group relative overflow-hidden rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-100'} shadow-sm hover:shadow-md transition-all duration-300`}>
                       <div className="aspect-square relative overflow-hidden">
-                        <img 
-                          src={`../assets/images/Perfume_img/at${item}.png`} 
+                      <img 
+                          src={images[`../assets/images/Perfume_img/at${item}.png`]?.default} 
                           alt={`Wishlist item ${item}`} 
                           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                         />

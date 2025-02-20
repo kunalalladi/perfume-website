@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Category from './components/Category/Category';
@@ -16,6 +16,7 @@ import Popup from './components/Popup/Popup';
 import PerfumeCategory from './components/ProductCategory';
 import ProductDetails from './components/ProductDetails';
 import ProfilePage from './components/Profile';
+import AuthForm from './components/Auth';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -41,6 +42,39 @@ const BannerData2 = {
   bgColor: "#3E2723",
 };
 
+// Wrapper component to handle navbar visibility
+const AppContent = ({ handleOrderPopup, orderPopup }) => {
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/Auth';
+
+  return (
+    <div className="dark:bg-bgdark bg-bgcolor duration-200 overflow-hidden">
+      {!isAuthPage && <Navbar handleOrderPopup={handleOrderPopup} />}
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero handleOrderPopup={handleOrderPopup} />
+            <Category />
+            <Category2 />
+            <Services />
+            <Banner data={BannerData} />
+            <Products />
+            <Banner data={BannerData2} />
+            <Blogs />
+            <Partners />
+            <Footer />
+            <Popup orderPopup={orderPopup} handleOrderPopup={handleOrderPopup} />
+          </>
+        } />
+        <Route path="/shop" element={<PerfumeCategory />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/Product" element={<ProductDetails />} />
+        <Route path="/Auth" element={<AuthForm />} />
+      </Routes>
+    </div>
+  );
+};
+
 const App = () => {
   const [orderPopup, setOrderPopup] = React.useState(false);
 
@@ -60,29 +94,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="dark:bg-bgdark bg-bgcolor duration-200 overflow-hidden">
-        <Navbar handleOrderPopup={handleOrderPopup} />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero handleOrderPopup={handleOrderPopup} />
-              <Category />
-              <Category2 />
-              <Services />
-              <Banner data={BannerData} />
-              <Products />
-              <Banner data={BannerData2} />
-              <Blogs />
-              <Partners />
-              <Footer />
-              <Popup orderPopup={orderPopup} handleOrderPopup={handleOrderPopup} />
-            </>
-          } />
-          <Route path="/shop" element={<PerfumeCategory />} />
-          <Route path="/profile" element={<ProfilePage/>} />
-          <Route path="/Product" element={<ProductDetails />} />
-        </Routes>
-      </div>
+      <AppContent handleOrderPopup={handleOrderPopup} orderPopup={orderPopup} />
     </Router>
   );
 };
